@@ -5,6 +5,23 @@
     Crear Denuncia
 
 %hr
+
 // Mostrar Mapa
 
-%div{ id: "basic_map", style: 'height: 400px;', class: 'thumbnail' }
+.row
+    .col-md-8
+        %h3
+        %div{ id: "basic_map", style: 'height: 400px;', class: 'thumbnail' }
+    
+    .col-md-4
+        %h3 Denuncias
+        
+        .list-group
+            - @denuncias.each do |denuncia|
+                %a.list-group-item
+                    %span.glyphicon.glyphicon-exclamation-sign
+                    = denuncia.descripcion
+                    
+                    
+:javascript
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);

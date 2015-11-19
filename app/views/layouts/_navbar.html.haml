@@ -8,7 +8,9 @@
                 %span.icon-bar
                 %span.icon-bar
                 %span.icon-bar
-            %strong= link_to "Guardian", root_path, class: 'navbar-brand'
+            = link_to root_path, class: 'navbar-brand' do
+                %span.glyphicon.glyphicon-tower
+                %strong Guardian
         
         / Collect the nav links, forms, and other content for toggling
         .collapse.navbar-collapse.navbar-ex1-collapse
