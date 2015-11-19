@@ -2,7 +2,7 @@
 .row
     .col-md-8
         %h3
-        %div{ id: "basic_map", style: 'height: 400px;', class: 'thumbnail' }
+        %div{ id: "basic_map", style: 'height: 450px;', class: 'thumbnail' }
     
     .col-md-4
         %h3 
@@ -12,24 +12,34 @@
                     %span.glyphicon.glyphicon-plus
                     Crear Denuncia
         
-        .list-group
+        %ul.list-group
             - @denuncias.each do |denuncia|
-                %a.list-group-item{ "data-toggle" => "tooltip", "data-placement" => "top", :title => "#{denuncia.latitud} #{denuncia.longitud}" }
+                %li.list-group-item{ "data-toggle" => "tooltip", "data-placement" => "top", :title => "#{denuncia.latitud} #{denuncia.longitud}" }
                     %span.glyphicon.glyphicon-exclamation-sign
                     = denuncia.descripcion
                     
-                    
+                    .pull-right
+                        = link_to [:edit, denuncia], class: 'btn btn-default btn-xs' do
+                            %span.glyphicon.glyphicon-pencil
+                        = link_to denuncia_path(denuncia), method: :delete, class: 'btn btn-danger btn-xs' do   
+                            %span.glyphicon.glyphicon-trash
+
 
     
 
 :javascript
+    $('[data-toggle="tooltip"]').tooltip()
+
     $(document).on('ready page:load', function () {
     //$(function() {
+    
+        
         
         handler = Gmaps.build('Google');
         handler.buildMap({
             provider: {
               // pass in other Google Maps API options here
+              zoom: 0
             },
             internal: {
               id: 'basic_map'
