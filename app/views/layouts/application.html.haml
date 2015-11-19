@@ -1,0 +1,34 @@
+!!! 5
+
+%html
+%head
+    %title Guardian HN
+    
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    
+    = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+    = stylesheet_link_tag 'https://bootswatch.com/united/bootstrap.min.css'
+    = javascript_include_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'
+    
+    // Google Maps
+    = javascript_include_tag '//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region='
+    = javascript_include_tag '//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js'
+    = javascript_include_tag '//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js'
+    
+    = csrf_meta_tags
+    
+%body
+
+    // NAVBAR
+    = render 'layouts/navbar'
+
+    .container
+        .row
+            .col-md-8.col-md-offset-2
+                .panel.panel-default
+                    .panel-body
+                        
+                        = render 'layouts/alerts'
+                    
+                        = yield

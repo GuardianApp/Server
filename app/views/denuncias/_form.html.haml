@@ -1,0 +1,17 @@
+= form_for @denuncia do |f|
+
+    .form-group
+        = f.label :descripcion
+        = f.text_field :descripcion, class: 'form-control'
+        
+    .form-group
+        = f.label :latitud
+        = f.text_field :latitud, class: 'form-control'
+    
+    .form-group
+        = f.label :longitud
+        = f.text_field :longitud, class: 'form-control'
+        
+    .form-group
+        = f.submit 'Crear Denuncia', class: 'btn btn-success'
+        = link_to 'Cancelar', :back, class: 'btn btn-default'

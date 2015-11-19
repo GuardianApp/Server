@@ -1,0 +1,17 @@
+= form_for @contacto do |f|
+
+    .form-group
+        = f.label :nombre_completo
+        = f.text_field :nombre_completo, class: 'form-control'
+
+    .form-group
+        = f.label :movil
+        = f.text_field :movil, class: 'form-control'
+        
+    .form-group
+        = f.label :email
+        = f.email_field :email, class: 'form-control'
+
+    .form-group
+        = f.submit ( f.object.new_record? ? "Crear Contacto" : "Guardar Cambios"), class: 'btn btn-success'
+        = link_to 'Cancelar', :back, class: 'btn btn-default'
