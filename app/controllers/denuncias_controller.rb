@@ -8,11 +8,13 @@ class DenunciasController < ApplicationController
         @hash = Gmaps4rails.build_markers(@denuncias) do |denuncia, marker|
             marker.lat denuncia.latitud
             marker.lng denuncia.longitud
+            marker.infowindow denuncia.descripcion
+            
         end
         
         respond_to do |format|
             format.html {}
-           format.json { render json: @denuncias } 
+            format.json { render json: @hash.to_json } 
         end
     end
     

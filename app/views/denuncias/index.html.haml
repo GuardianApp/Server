@@ -1,12 +1,3 @@
-%h2 Denuncias
-
-= link_to new_denuncia_path, class: 'btn btn-primary btn-xs' do
-    %span.glyphicon.glyphicon-plus
-    Crear Denuncia
-
-%hr
-
-// Mostrar Mapa
 
 .row
     .col-md-8
@@ -14,14 +5,43 @@
         %div{ id: "basic_map", style: 'height: 400px;', class: 'thumbnail' }
     
     .col-md-4
-        %h3 Denuncias
+        %h3 
+            Denuncias
+            .pull-right
+                = link_to new_denuncia_path, class: 'btn btn-primary btn-xs' do
+                    %span.glyphicon.glyphicon-plus
+                    Crear Denuncia
         
         .list-group
             - @denuncias.each do |denuncia|
-                %a.list-group-item
+                %a.list-group-item{ "data-toggle" => "tooltip", "data-placement" => "top", :title => "#{denuncia.latitud} #{denuncia.longitud}" }
                     %span.glyphicon.glyphicon-exclamation-sign
                     = denuncia.descripcion
                     
                     
+
+    
+
 :javascript
-    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    $(document).on('ready page:load', function () {
+    //$(function() {
+        
+        handler = Gmaps.build('Google');
+        handler.buildMap({
+            provider: {
+              // pass in other Google Maps API options here
+            },
+            internal: {
+              id: 'basic_map'
+            }
+        },
+        
+          function(){
+            
+            var markers = handler.addMarkers(#{raw @hash.to_json });  
+            
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+          }
+        );
+    });
